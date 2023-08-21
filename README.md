@@ -3,21 +3,21 @@
 TaskTracker API is a FastAPI-based REST API for managing tasks and employees within a task tracking system.
 It leverages SQLAlchemy for database operations and Pydantic for data validation.
 
-## Project Structure ![Status](https://img.shields.io/badge/Status-InProgress-yellow)
+## Project Structure
 
 - `src/main.py`: Main FastAPI application file where the app is created and routers are connected.
 - `src/database.py`: Configuration of connection to the database (PostgreSQL).
 - `src/congig.py`: Congiguration of the application and database settings.
 - `src/tasks/...`: *files related to "Tasks"*
-    - `crud.py`: Defines DAO for CRUD operations.
-    - `models.py`: Defines data models.
-    - `schemas.py`: Defines pydantic schemas.
-    - `router.py`: Defines routes and implementation of endpoints.
+    - `crud.py`: DAO and business logic for CRUD operations.
+    - `models.py`: Data models.
+    - `schemas.py`: Pydantic schemas.
+    - `router.py`: Routes and implementation of endpoints.
 - `src/employee/...`: *files related to "Employee"*
-    - `crud.py`: Defines DAO for CRUD operations.
-    - `models.py`: Defines data models.
-    - `schemas.py`: Defines pydantic schemas.
-    - `router.py`: Defines routes and implementation of endpoints.
+    - `crud.py`: DAO and business logic for CRUD operations.
+    - `models.py`: Data models.
+    - `schemas.py`: Pydantic schemas.
+    - `router.py`: Routes and implementation of endpoints.
 
 
 ## Installation
@@ -29,9 +29,9 @@ It leverages SQLAlchemy for database operations and Pydantic for data validation
 
 ## Usage
 
-1. Make sure you have PostgreSQL installed and running (`docker-compose up -d` to run db in my example)
+1. Make sure you have PostgreSQL installed and running (`docker-compose up -d` to run db, for example)
 2. Configure the database connection in `database.py` and required variables in `.env`.
-3. Run the FastAPI application: `poetry run uvicorn app:app --host 0.0.0.0 --port 8000`
+3. Run the FastAPI application: `uvicorn src.main:app --host 0.0.0.0 --port 8000`
 
 
 ## Endpoints 
