@@ -10,7 +10,13 @@ repos:
       - id: check-added-large-files
       - id: debug-statements
       - id: double-quote-string-fixer
+      - id: name-tests-test
       - id: end-of-file-fixer
+
+  - repo: https://github.com/asottile/reorder-python-imports
+    rev: v3.10.0
+    hooks:
+      - id: reorder-python-imports
 
   - repo: https://github.com/PyCQA/autoflake
     rev: v2.2.0
