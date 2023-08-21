@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "task-tracker"
+version = "0.1.0"
+description = "FastAPI-based API for task and employee management"
+authors = ["Vadim B <bendenko.v@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "task_tracker" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.101.1"
+uvicorn = "^0.23.2"
+pydantic = "^2.1.1"
+pydantic-settings = "^2.0.3"
+alembic = "^1.11.3"
+psycopg2-binary = "^2.9.7"
+sqlalchemy = "1.4.49"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+target-version = ['py311']
+line-length = 120
+skip-string-normalization = 1
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | \.pytest_cache
+)/
+'''
+
+[tool.isort]
+py_version = 311
+line_length = 120
+multi_line_output = 3
+include_trailing_comma = true
+combine_as_imports = true
+combine_star = true
+force_grid_wrap = 0
+skip = ['.gitignore', '.dockerignore']
+skip_glob = [
+    '**/migrations/**',
+    '.git',
+    '.venv',
+    '.idea'
+]
