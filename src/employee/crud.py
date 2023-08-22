@@ -43,7 +43,7 @@ def update_employee(db: Session, employee_id: int, data: EmployeeCreateScheme) -
 def busiest_employee(db: Session) -> EmployeeListResponse:
     employees = (
         db.query(EmployeeModel, func.count(TasksModel.id).label('active_task_count'))
-        .join(TasksModel, TasksModel.employee_id == EmployeeModel.id)
+        .outerjoin(TasksModel, TasksModel.employee_id == EmployeeModel.id)
         .filter(TasksModel.status == StatusEnum.doing)
         .group_by(EmployeeModel.id)
         .order_by(func.count(TasksModel.id).desc())

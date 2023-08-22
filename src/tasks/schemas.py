@@ -10,9 +10,9 @@ class TaskCreateScheme(BaseModel):
     name: str
     description: str
     status: StatusEnum
-    employee_id: int
+    employee_id: int | None = None
     parent_id: int
-    deadline: datetime
+    deadline: datetime | None = None
 
 
 class TaskScheme(TaskCreateScheme):

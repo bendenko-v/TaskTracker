@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from .schemas import TaskScheme, TaskCreateScheme
+from .schemas import TaskScheme, TaskCreateScheme, TaskImportantScheme
 from . import crud
 
 tasks_router = APIRouter(prefix='/tasks', tags=['tasks'])
@@ -37,3 +37,13 @@ def create_task(task: TaskCreateScheme, db: Session = Depends(get_db)):
 def update_task(task_id: int, data: TaskCreateScheme, db: Session = Depends(get_db)):
     """ Update task """
     return crud.update_task(db, task_id, data)
+
+important_tasks_router = APIRouter(prefix='/important-tasks', tags=['important-tasks'])
+
+@important_tasks_router.get('', response_model=list[TaskImportantScheme])
+def get_important_tasks(db: Session = Depends(get_db)):
+    """ Get important tasks """
+    tasks = crud.get_important_tasks(db)
+    if not tasks:
+        return JSONResponse(content={'message': 'No important tasks found'}, status_code=404)
+    return tasks
