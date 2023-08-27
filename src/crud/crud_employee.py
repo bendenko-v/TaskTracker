@@ -12,10 +12,10 @@ class EmployeeCRUD(BaseCRUD[EmployeeModel, EmployeeCreateScheme]):
     CRUD for employees
     """
 
-    def get_employee_by_name(self, db: Session, employee_name: str) -> EmployeeModel:
+    async def get_employee_by_name(self, db: Session, employee_name: str) -> EmployeeModel:
         return db.query(EmployeeModel).filter(EmployeeModel.name == employee_name).first()
 
-    def busiest_employee(self, db: Session) -> list[tuple[EmployeeModel, ...] | None]:
+    async def busiest_employee(self, db: Session) -> list[tuple[EmployeeModel, ...] | None]:
         # Get employees with active tasks (status = doing) in descending order """
         employees = (
             db.query(EmployeeModel, func.count(TasksModel.id).label('active_task_count'))
@@ -26,7 +26,7 @@ class EmployeeCRUD(BaseCRUD[EmployeeModel, EmployeeCreateScheme]):
         ).all()
         return employees
 
-    def less_busy_employee(self, db: Session) -> list[tuple[EmployeeModel, ...] | None]:
+    async def less_busy_employee(self, db: Session) -> list[tuple[EmployeeModel, ...] | None]:
         # Get employees with active tasks in ascending order """
         employees = (
             db.query(EmployeeModel, func.count(TasksModel.id).label('task_count'))

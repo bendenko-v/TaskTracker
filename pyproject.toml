@@ -29,7 +29,8 @@ include = '\.pyi?$'
 exclude = '''
 /(
     \.git
-  | \migrations
+  | \\migrations
+  | \.idea
   | \.venv
   | \.pytest_cache
 )/
