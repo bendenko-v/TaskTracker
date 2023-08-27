@@ -2,8 +2,8 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
-from ..employee.schemas import EmployeeScheme
-from .models import StatusEnum
+from src.models.task import StatusEnum
+from src.schemas import EmployeeScheme
 
 
 class TaskCreateScheme(BaseModel):
@@ -11,7 +11,7 @@ class TaskCreateScheme(BaseModel):
     description: str
     status: StatusEnum
     employee_id: int | None = None
-    parent_id: int
+    parent_id: int | None = None
     deadline: datetime | None = None
 
 

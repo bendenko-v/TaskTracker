@@ -7,8 +7,7 @@ from alembic import context
 
 from src.config import settings
 from src.database import Base
-from src.tasks.models import TasksModel
-from src.employee.models import EmployeeModel
+from src.models import TasksModel, EmployeeModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

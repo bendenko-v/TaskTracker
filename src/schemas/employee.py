@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict
 
-from src.tasks.models import StatusEnum
+from src.models import StatusEnum
 
 
 class EmployeeCreateScheme(BaseModel):

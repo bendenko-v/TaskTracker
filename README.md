@@ -8,17 +8,11 @@ It leverages SQLAlchemy for database operations and Pydantic for data validation
 - `src/main.py`: Main FastAPI application file where the app is created and routers are connected.
 - `src/database.py`: Configuration of connection to the database (PostgreSQL).
 - `src/congig.py`: Congiguration of the application and database settings.
-- `src/tasks/...`: *files related to "Tasks"*
-    - `crud.py`: DAO and business logic for CRUD operations.
-    - `models.py`: Data models.
-    - `schemas.py`: Pydantic schemas.
-    - `router.py`: Routes and implementation of endpoints.
-- `src/employee/...`: *files related to "Employee"*
-    - `crud.py`: DAO and business logic for CRUD operations.
-    - `models.py`: Data models.
-    - `schemas.py`: Pydantic schemas.
-    - `router.py`: Routes and implementation of endpoints.
-
+- `src/api/`: API endpoints
+- `src/crud/`: CRUD operations
+- `src/models/`: Data models
+- `src/schemas/`: Pydantic schemas
+- `src/services/`: Business logic
 
 ## Installation
 
@@ -26,28 +20,22 @@ It leverages SQLAlchemy for database operations and Pydantic for data validation
 2. Navigate to the project directory: `cd TaskTracker`
 3. Install dependencies using Poetry: `poetry install`
 
-
 ## Usage
 
 1. Make sure you have PostgreSQL installed and running (`docker-compose up -d` to run db, for example)
 2. Configure the database connection in `database.py` and required variables in `.env`.
 3. Run the FastAPI application: `uvicorn src.main:app --host 0.0.0.0 --port 8000`
 
+## Endpoints
 
-## Endpoints 
-
-
-- CRUD Employees: `/employee`, `/employee/{employee_id}`
-- CRUD Tasks: `/tasks`, `/tasks/{task_id}`
-- Busy Employees: `/busiest-employee`
-- Important Tasks: `/important-tasks` ![Status](https://img.shields.io/badge/Status-InProgress-yellow)
-
+- `/employee`, `/employee/{employee_id}`: Create/Read/Update Employees
+- `/tasks`, `/tasks/{task_id}`: Create/Read/Update Tasks
+- `/employee/busiest`: Busiest Employees
+- `/tasks/important`: Important tasks and employees who can take them (less busy employee or employee who have a parent task and no more than 2 tasks than a less busy employee)
 
 ## Technologies Used
 
-- [FastAPI](https://fastapi.tiangolo.com/) 
+- [FastAPI](https://fastapi.tiangolo.com/)
 - [SQLAlchemy](https://www.sqlalchemy.org/)
 - [Pydantic](https://pydantic-docs.helpmanual.io/)
 - [Poetry](https://python-poetry.org/)
-
-
