@@ -13,7 +13,9 @@ router = APIRouter()
 @router.get('/important', response_model=list[TaskImportantScheme])
 async def get_important_tasks(db: Session = Depends(get_db)):
     """Get important tasks"""
-    if tasks := get_important_tasks_service(await crud.get_important_tasks(db), await crud_emp.less_busy_employee(db)):
+    if tasks := await get_important_tasks_service(
+        await crud.get_important_tasks(db), await crud_emp.less_busy_employee(db)
+    ):
         return tasks
     else:
         raise HTTPException(status_code=404, detail='No important tasks found')

@@ -12,7 +12,7 @@ router = APIRouter()
 @router.get('/busiest', response_model=EmployeeListResponse)
 async def busiest_employee(db: Session = Depends(get_db)) -> EmployeeListResponse:
     """Get busiest employee"""
-    if employees := get_busiest_employee(employees=await crud.busiest_employee(db)):
+    if employees := await get_busiest_employee(employees=await crud.busiest_employee(db)):
         return employees
     else:
         raise HTTPException(status_code=404, detail='Employees not found')

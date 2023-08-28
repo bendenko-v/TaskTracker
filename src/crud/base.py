@@ -12,7 +12,11 @@ CreateUpdateSchemaType = TypeVar('CreateUpdateSchemaType', bound=BaseModel)
 
 class BaseCRUD(Generic[ModelType, CreateUpdateSchemaType]):
     """
-    Base CRUD class with default methods to create, read and update in
+    Base CRUD class with default methods to create, read and update.
+
+    Args:
+        Type[ModelType]: The SQLAlchemy model class to perform CRUD operations on.
+        Type[CreateUpdateSchemaType]: The Pydantic schema class for creating and updating model instances.
     """
 
     def __init__(self, model: Type[ModelType]):

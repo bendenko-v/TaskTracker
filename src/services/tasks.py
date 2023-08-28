@@ -1,11 +1,12 @@
 from fastapi import HTTPException
 
-from src.models import TasksModel, EmployeeModel, StatusEnum
+from src.models import EmployeeModel, StatusEnum, TasksModel
 from src.schemas import TaskImportantScheme, TaskScheme
 
 
-def get_important_tasks_service(
-        important_tasks: list[TasksModel | None], employees: list[tuple[EmployeeModel, ...] | None],
+async def get_important_tasks_service(
+    important_tasks: list[TasksModel | None],
+    employees: list[tuple[EmployeeModel, ...] | None],
 ) -> list[TaskImportantScheme | None]:
     if not important_tasks:
         raise HTTPException(status_code=404, detail='Tasks not found')
