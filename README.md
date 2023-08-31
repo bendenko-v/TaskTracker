@@ -22,16 +22,33 @@ It leverages SQLAlchemy for database operations and Pydantic for data validation
 
 ## Usage
 
-1. Make sure you have PostgreSQL installed and running (`docker-compose up -d` to run db, for example)
-2. Configure the database connection in `database.py` and required variables in `.env`.
-3. Run the FastAPI application: `uvicorn src.main:app --host 0.0.0.0 --port 8000`
+1. Create `.env` file: Copy the contents of `.env_example` to a new `.env` file in the project root directory. Adjust
+   the variables according to your environment settings.
+
+    ```bash
+    cp .env_example .env
+    ```
+2. Run Postgres database with the following command:
+    ```bash
+    docker-compose up -d
+   ```
+3. Make migrations: Apply database migrations using Alembic to set up the database schema. Run the following
+   command:
+    ```bash
+    alembic upgrade head
+    ```
+4. Run the FastAPI application:
+   ```bash
+   uvicorn src.main:app --host 0.0.0.0 --port 8000
+   ```
 
 ## Endpoints
 
 - `/employee`, `/employee/{employee_id}`: Create/Read/Update Employees
 - `/tasks`, `/tasks/{task_id}`: Create/Read/Update Tasks
 - `/employee/busiest`: Busiest Employees
-- `/tasks/important`: Important tasks and employees who can take them (less busy employee or employee who have a parent task and no more than 2 tasks than a less busy employee)
+- `/tasks/important`: Important tasks and employees who can take them (less busy employee or employee who have a parent
+  task and no more than 2 tasks than a less busy employee)
 
 ## Technologies Used
 

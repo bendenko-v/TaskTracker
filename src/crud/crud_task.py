@@ -10,7 +10,7 @@ class TaskCRUD(BaseCRUD[TasksModel, TaskCreateScheme]):
     CRUD operations for tasks.
 
     Args:
-        BaseCRUD (type): The base CRUD class for performing common operations.
+        Type[BaseCRUD]: The base CRUD class for performing common operations.
     """
 
     async def get_important_tasks(self, db: Session) -> list[TasksModel | None]:

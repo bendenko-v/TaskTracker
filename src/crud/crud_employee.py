@@ -12,11 +12,11 @@ class EmployeeCRUD(BaseCRUD[EmployeeModel, EmployeeCreateScheme]):
     CRUD operations for employees.
 
     Args:
-        BaseCRUD (type): The base CRUD class for performing common operations.
+        Type[BaseCRUD]: The base CRUD class for performing common operations.
     """
 
     async def get_employee_by_name(self, db: Session, employee_name: str) -> EmployeeModel:
-        """ Retrieve an employee by their name """
+        """Retrieve an employee by their name"""
         return db.query(EmployeeModel).filter(EmployeeModel.name == employee_name).first()
 
     async def busiest_employee(self, db: Session) -> list[tuple[EmployeeModel, ...] | None]:
